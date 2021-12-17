@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  php:
+    image: php:7.4.27-fpm-alpine3.15
+    container_name: php
+    networks:
+      - phpapp
+    volumes:
+      - ./website/:/var/www/html/
+    restart: always
+    
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    networks:
+      - phpapp
+    volumes:
+      - ./website/:/var/www/html/
+      - /root/phpnginxssl/crt/swathi.com.crt:/etc/nginx/conf.d/swathi.com.crt
+      - /root/phpnginxssl/crt/swathi.com.key:/etc/nginx/conf.d/swathi.com.key
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
+      - "443:443"  
+    restart: always
+      
+      
+networks:
+  phpapp:
