@@ -15,7 +15,7 @@ A sample website hosted with nginx and php-fpm Application with SSL using docker
 git clone https://github.com/FujiClado/aws-elb-site.git  website
 ```
 
-- Create SSl Certificate files (selfsigned used here)
+- Create SSL Certificate files (selfsigned used here)
 
 ```
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout swathi.com.key -out swathi.com.crt
